@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Schedule</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .week {
+            margin-bottom: 40px;
+        }
+
+        .week h2 {
+            margin: 0 0 20px 0;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .day {
+            margin-bottom: 20px;
+        }
+
+        .day h3 {
+            margin: 0 0 10px 0;
+            color: #555;
+        }
+
+        .class-entries {
+            margin-bottom: 10px;
+        }
+
+        .class-entry {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .class-entry input {
+            width: calc(50% - 5px);
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .additional-info-container {
+            margin-bottom: 10px;
+        }
+
+        .additional-info {
+            width: calc(100% - 110px);
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            vertical-align: top;
+        }
+
+        .add-info-btn {
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+            vertical-align: top;
+        }
+
+        .add-info-btn:hover {
+            background-color: #218838;
+        }
+
+        .add-class-btn {
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .add-class-btn:hover {
+            background-color: #218838;
+        }
+
+        #print-btn {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        #print-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lesrooster</h1>
+        <form id="schedule-form">
+            <!-- Week 1 -->
+            <div class="week" id="week1">
+                <h2>Week 1</h2>
+                <div class="day" data-day="Maandag">
+                    <h3>Maandag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 9:00 AM - 10:00 AM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Dinsdag">
+                    <h3>Dinsdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 10:00 AM - 11:00 AM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Woensdag">
+                    <h3>Woensdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 11:00 AM - 12:00 PM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Donderdag">
+                    <h3>Donderdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 1:00 PM - 2:00 PM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Vrijdag">
+                    <h3>Vrijdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 2:00 PM - 3:00 PM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Zaterdag">
+                    <h3>Zaterdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 9:00 AM - 10:00 AM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Zondag">
+                    <h3>Zondag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 10:00 AM - 11:00 AM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+            </div>
+            <!-- Week 2 -->
+            <div class="week" id="week2">
+                <h2>Week 2</h2>
+                <div class="day" data-day="Maandag">
+                    <h3>Maandag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 9:00 AM - 10:00 AM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Dinsdag">
+                    <h3>Dinsdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 10:00 AM - 11:00 AM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Woensdag">
+                    <h3>Woensdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 11:00 AM - 12:00 PM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Donderdag">
+                    <h3>Donderdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 1:00 PM - 2:00 PM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Vrijdag">
+                    <h3>Vrijdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 2:00 PM - 3:00 PM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Zaterdag">
+                    <h3>Zaterdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 9:00 AM - 10:00 AM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Zondag">
+                    <h3>Zondag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 10:00 AM - 11:00 AM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+            </div>
+            <!-- Week 3 -->
+            <div class="week" id="week3">
+                <h2>Week 3</h2>
+                <div class="day" data-day="Maandag">
+                    <h3>Maandag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 9:00 AM - 10:00 AM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Dinsdag">
+                    <h3>Dinsdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 10:00 AM - 11:00 AM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Woensdag">
+                    <h3>Woensdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 11:00 AM - 12:00 PM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Donderdag">
+                    <h3>Donderdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 1:00 PM - 2:00 PM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Vrijdag">
+                    <h3>Vrijdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 2:00 PM - 3:00 PM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Zaterdag">
+                    <h3>Zaterdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 9:00 AM - 10:00 AM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Zondag">
+                    <h3>Zondag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 10:00 AM - 11:00 AM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+            </div>
+            <!-- Week 4 -->
+            <div class="week" id="week4">
+                <h2>Week 4</h2>
+                <div class="day" data-day="Maandag">
+                    <h3>Maandag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 9:00 AM - 10:00 AM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Dinsdag">
+                    <h3>Dinsdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 10:00 AM - 11:00 AM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Woensdag">
+                    <h3>Woensdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 11:00 AM - 12:00 PM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Donderdag">
+                    <h3>Donderdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 1:00 PM - 2:00 PM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Vrijdag">
+                    <h3>Vrijdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 2:00 PM - 3:00 PM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Zaterdag">
+                    <h3>Zaterdag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 9:00 AM - 10:00 AM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+                <div class="day" data-day="Zondag">
+                    <h3>Zondag</h3>
+                    <div class="class-entries">
+                        <div class="class-entry">
+                            <input type="text" placeholder="Class" class="class-input">
+                            <input type="text" placeholder="Time (e.g., 10:00 AM - 11:00 AM)" class="time-input">
+                            <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="add-class-btn">Add Class</button>
+                </div>
+            </div>
+            <button type="button" id="print-btn">Print Schedule</button>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Function to add class entry
+            const addClassEntry = (dayElement) => {
+                const classEntries = dayElement.querySelector('.class-entries');
+                const newClassEntry = document.createElement('div');
+                newClassEntry.classList.add('class-entry');
+                newClassEntry.innerHTML = `
+                    <input type="text" placeholder="Class" class="class-input">
+                    <input type="text" placeholder="Time (e.g., 9:00 AM - 10:00 AM)" class="time-input">
+                    <textarea placeholder="Extra info (optional)" class="extra-info"></textarea>
+                `;
+                classEntries.appendChild(newClassEntry);
+            };
+
+            // Add event listeners to all "Add Class" buttons
+            document.querySelectorAll('.add-class-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const dayElement = button.closest('.day');
+                    addClassEntry(dayElement);
+                });
+            });
+
+            // Function to print schedule
+            const printSchedule = () => {
+                const scheduleForm = document.getElementById('schedule-form');
+                const doc = new jsPDF();
+
+                // Iterate through each week and day
+                const weeks = document.querySelectorAll('.week');
+                weeks.forEach(week => {
+                    const days = week.querySelectorAll('.day');
+                    days.forEach(day => {
+                        // Get day title and classes
+                        const dayTitle = day.querySelector('h3').textContent;
+                        const classes = day.querySelectorAll('.class-entry');
+                        let classData = '';
+
+                        // Format class data for PDF
+                        classes.forEach(classEntry => {
+                            const className = classEntry.querySelector('.class-input').value;
+                            const classTime = classEntry.querySelector('.time-input').value;
+                            const extraInfo = classEntry.querySelector('.extra-info').value;
+                            classData += `${className} - ${classTime} `;
+                            if (extraInfo) {
+                                classData += `(${extraInfo}) `;
+                            }
+                            classData += '\n';
+                        });
+
+                        // Add day title and classes to PDF
+                        doc.text(dayTitle, 10, doc.autoTable.previous.finalY + 10);
+                        doc.text(classData, 10, doc.autoTable.previous.finalY + 15);
+                    });
+                });
+
+                // Save PDF
+                doc.save('class_schedule.pdf');
+            };
+
+            // Add event listener to print button
+            const printButton = document.getElementById('print-btn');
+            printButton.addEventListener('click', printSchedule);
+        });
+    </script>
+</body>
+</html>
